@@ -21,7 +21,7 @@ const SidebarContainer = styled.div`
 function Sidebar(props: Props) {
     return (
         <SidebarContainer>
-            <h1>{props.title}</h1>;
+            <h2>{props.title}</h2>
         </SidebarContainer>
     );
 }

@@ -19,7 +19,7 @@ function Header({ title, description }: Props) {
     // view
     return (
         <HeaderContainer>
-            <h1>{title}</h1>
+            <h2>{title}</h2>
         </HeaderContainer>
     );
 }

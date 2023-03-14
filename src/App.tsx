@@ -4,6 +4,8 @@ import Contents from "@/layout/Contents";
 import Sidebar from "@/layout/Sidebar";
 import styled from "styled-components";
 import GlobalStyle from "@/style/GlobalStyle";
+import Counter from "@/components/Counter";
+import Input from "./components/input";
 
 const AppContainer = styled.div`
     display: flex;
@@ -17,13 +19,15 @@ function App() {
     // view
     return (
         <>
-            <GlobalStyle />
+            <Counter />
+            <Input />
+            {/* <GlobalStyle />
             <AppContainer>
                 <Header title="Header" description={123} />
                 <Sidebar title="Sidebar" />
                 <Contents title="Contents" />
                 <Footer title="Footer" />
-            </AppContainer>
+            </AppContainer> */}
         </>
     );
 }
