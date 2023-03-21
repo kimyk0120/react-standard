@@ -6,6 +6,7 @@ import styled from "styled-components";
 import GlobalStyle from "@/style/GlobalStyle";
 import Counter from "@/components/Counter";
 import Input from "./components/input";
+import Calculator from "./components/Calculator";
 
 const AppContainer = styled.div`
     display: flex;
@@ -21,6 +22,8 @@ function App() {
         <>
             <Counter />
             <Input />
+            <Calculator />
+            {/* <Input /> */}
             {/* <GlobalStyle />
             <AppContainer>
                 <Header title="Header" description={123} />
