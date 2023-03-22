@@ -80,7 +80,15 @@ function Calculator() {
     };
 
     const onDelete = (e: any) => {
+        if (num === "0") {
+            return;
+        }
+
         setNum((prevState) => prevState.slice(0, -1));
+        console.log(num.length);
+        if (num.length <= 1) {
+            onAllClear(e);
+        }
     };
 
     const onAllClear = (e: any) => {
@@ -91,7 +99,9 @@ function Calculator() {
         setNum((prevState) => prevState + operator);
     };
 
-    const onResult = () => {};
+    const onResult = (e: any) => {
+        console.log(num);
+    };
 
     // view
     return (
