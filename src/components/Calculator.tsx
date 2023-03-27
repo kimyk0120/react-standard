@@ -69,6 +69,8 @@ function Calculator() {
 
     // state
     const [num, setNum] = useState<string>("0");
+    // const [firstNum, setfirstNum] = useState<string>("0");
+    // const [operator, setOperator] = useState<string>("");
 
     // event
     const onAddNum = (e: any) => {
@@ -77,11 +79,13 @@ function Calculator() {
         if (num === "0") {
             setNum((prevState) => "");
         }
-        setNum((prevState) => {return prevState + innerTextNum});
+        setNum((prevState) => {
+            return prevState + innerTextNum
+        });
     };
 
     useEffect(() => {
-            console.log("num : " , num)
+            console.log("num : " , num);
             firstNum = num;
             console.log("fistNum : " , firstNum);
         }
