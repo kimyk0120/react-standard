@@ -64,9 +64,8 @@ const InputBar = styled.input`
  */
 function Calculator() {
     // var
-    let firstNum = '';
-    let operator = '';
-    //let previousNum = '';
+    let firstNum = "0";
+    let operator = "";
 
     // state
     const [num, setNum] = useState<string>("0");
@@ -78,13 +77,13 @@ function Calculator() {
         if (num === "0") {
             setNum((prevState) => "");
         }
-        setNum((prevState) => prevState + innerTextNum);
+        setNum((prevState) => {return prevState + innerTextNum});
     };
 
     useEffect(() => {
-            // eslint-disable-next-line react-hooks/exhaustive-deps
+            console.log("num : " , num)
             firstNum = num;
-            console.log("first_num : " , num)
+            console.log("fistNum : " , firstNum);
         }
         , [num]
     );
