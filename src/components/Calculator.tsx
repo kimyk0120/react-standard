@@ -64,7 +64,10 @@ const InputBar = styled.input`
  */
 function Calculator() {
     // var
-    let op_list = [];
+    let firstNum = '';
+    let operatorForAdvanced = '';
+    let previousKey = '';
+    let previousNum = '';
 
     // state
     const [num, setNum] = useState<string>("0");
@@ -102,6 +105,25 @@ function Calculator() {
     const onResult = (e: any) => {
         console.log(num);
     };
+
+    function calculate(n1:number, operator:string, n2:number) {
+        let result = 0;
+        if(operator === '+') {
+            result = Number(n1) + Number(n2); // '+'버튼을 눌렀을 때
+        }
+        else if(operator === '-') {
+            result = Number(n1) - Number(n2); // '-'버튼을 눌렀을 때
+        }
+        else if(operator === '*') {
+            result = Number(n1) * Number(n2); // '*'버튼을 눌렀을 때
+        }
+        if(operator === '/') {
+            result = Number(n1) / Number(n2); // '/'버튼을 눌렀을 때
+        }
+        return String(result);
+    }
+
+
 
     // view
     return (
