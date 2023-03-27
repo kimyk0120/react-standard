@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 
 const MainContainer = styled.div`
     display: flex;
@@ -65,22 +65,29 @@ const InputBar = styled.input`
 function Calculator() {
     // var
     let firstNum = '';
-    let operatorForAdvanced = '';
-    let previousKey = '';
-    let previousNum = '';
+    let operator = '';
+    //let previousNum = '';
 
     // state
     const [num, setNum] = useState<string>("0");
 
     // event
     const onAddNum = (e: any) => {
-        console.log(e.currentTarget.textContent);
+        //console.log(e.currentTarget.textContent);
         const innerTextNum = e.currentTarget.textContent;
         if (num === "0") {
             setNum((prevState) => "");
         }
         setNum((prevState) => prevState + innerTextNum);
     };
+
+    useEffect(() => {
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+            firstNum = num;
+            console.log("first_num : " , num)
+        }
+        , [num]
+    );
 
     const onDelete = (e: any) => {
         if (num === "0") {
