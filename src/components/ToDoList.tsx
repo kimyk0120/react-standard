@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {useState} from "react";
+import {ChangeEvent, useState} from "react";
 
 const InputArea = styled.div`
     display: flex;
@@ -95,18 +95,30 @@ const Input = styled.input`
 function TodoList() {
     // state
     const [list, setList] = useState<string[]>(["a","b","c","d"]);
+    const [inputVal, setInputVal] = useState<string>("");
 
+    // event
+    const onInputChange = (e: ChangeEvent<HTMLInputElement>)=>{
+        const value = e.target.value;
+        setInputVal(value);
+    }
+    const addList = () => {
+        setList((prevState) =>
+            {return prevState.concat(inputVal)}
+        )
+        setInputVal("");
+    }
 
     // view
     return (
         <Wrapper>
             <Title>Todo List</Title>
-            <form>
+            {/*<form>*/}
                 <InputArea>
-                    <Input type="text" placeholder="할 일을 입력해주세요." />
-                    <AddButton>Add</AddButton>
+                    <Input type="text" placeholder="할 일을 입력해주세요." value={inputVal} onChange={onInputChange} />
+                    <AddButton onClick={addList}>Add</AddButton>
                 </InputArea>
-            </form>
+            {/*</form>*/}
             <TodoItems>
                 {list.map((item)=>(
                         <TodoItem>
