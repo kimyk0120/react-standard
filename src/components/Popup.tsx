@@ -71,7 +71,6 @@ function Popup({ content, btnTitle }: Props) {
             <button onClick={PopupHandler}>팝업 열기</button>{" "}
             {isOpen && (
                 <Wrap>
-
                     <PopupContainer>
                         <PopupContent>
                             <p>{content}</p>

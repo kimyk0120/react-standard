@@ -8,6 +8,8 @@ import Counter from "@/components/Counter";
 import Input from "@/components/input";
 import Calculator from "@/components/Calculator";
 import Popup from "@/components/Popup";
+import LiveClock from "@/components/LiveClock";
+import ToDoList from "@/components/ToDoList";
 
 const AppContainer = styled.div`
     display: flex;
@@ -21,7 +23,12 @@ function App() {
     // view
     return (
         <>
+            <ToDoList />
+            <br />
+            <LiveClock />
+            <br />
             <Popup content={"리액트 스터디"} btnTitle={"확인"} />
+            <br />
             <Counter />
             <Input />
             <Calculator />
