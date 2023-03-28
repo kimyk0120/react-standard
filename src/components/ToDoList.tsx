@@ -104,7 +104,7 @@ function TodoList() {
     }
     const addList = () => {
         setList((prevState) =>
-            {return prevState.concat(inputVal)}
+            {return prevState.concat(inputVal)}  // 불변성을 유지하기 위해 concat을 사용함 또는 [...prevState, inputVal]
         )
         setInputVal("");
     }
