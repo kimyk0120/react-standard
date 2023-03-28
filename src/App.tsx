@@ -5,8 +5,9 @@ import Sidebar from "@/layout/Sidebar";
 import styled from "styled-components";
 import GlobalStyle from "@/style/GlobalStyle";
 import Counter from "@/components/Counter";
-import Input from "./components/input";
-import Calculator from "./components/Calculator";
+import Input from "@/components/input";
+import Calculator from "@/components/Calculator";
+import Popup from "@/components/Popup";
 
 const AppContainer = styled.div`
     display: flex;
@@ -20,6 +21,7 @@ function App() {
     // view
     return (
         <>
+            <Popup content={"리액트 스터디"} btnTitle={"확인"} />
             <Counter />
             <Input />
             <Calculator />
