@@ -1,4 +1,4 @@
-// noinspection DuplicatedCode
+// noinspection DuplicatedCode,UnnecessaryLocalVariableJS
 
 import styled from "styled-components";
 import {ChangeEvent, FormEvent, useState} from "react";
@@ -156,13 +156,13 @@ function TodoList() {
         setTodoList((prevList) => {
            const updateList = prevList.map((item, idx)=>{
                if (idx === index){
-                   const updateRow = {...item, task :updateValue};
+                   console.log({...item});
+                   const updateRow = {...item, task: updateValue};
                    return updateRow;
                } else {
                    return item;
                }
            }) ;
-
            return updateList;
         });
     }
@@ -192,18 +192,20 @@ function TodoList() {
                 </InputArea>
             </form>
             <TodoItems>
-                {todoList.map((item, index)=>(
-                    <TodoItem  key={index}>
-                        <Flex>
-                            <Checkbox onClick={()=>onCheck(index)} />
-                            <Task completed={item.completed}>{item.task}</Task>
-                        </Flex>
-                        <div>
-                            <EditButton onClick={() => onEdit(index)}>Edit</EditButton>
-                            <DeleteButton onClick={() => onDelete(index)}>Delete</DeleteButton>
-                        </div>
-                    </TodoItem>
-                ))}
+                {
+                    todoList.map((item, index) => (
+                        <TodoItem key={index}>
+                            <Flex>
+                                <Checkbox onClick={() => onCheck(index)}/>
+                                <Task completed={item.completed}>{item.task}</Task>
+                            </Flex>
+                            <div>
+                                <EditButton onClick={() => onEdit(index)}>Edit</EditButton>
+                                <DeleteButton onClick={() => onDelete(index)}>Delete</DeleteButton>
+                            </div>
+                        </TodoItem>
+                    ))
+                }
             </TodoItems>
         </Wrapper>
     );
