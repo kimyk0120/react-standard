@@ -1,4 +1,7 @@
+// noinspection DuplicatedCode
+
 import styled from "styled-components";
+import {ChangeEvent, FormEvent, useState} from "react";
 
 const InputArea = styled.div`
     display: flex;
@@ -93,7 +96,7 @@ const Input = styled.input`
     }
 `;
 
-type Item = {
+type Todo = {
     completed: boolean;
     task: string;
 };
@@ -108,27 +111,99 @@ const sampleList = [
  * @description 할 일 목록
  */
 function TodoList() {
+    // state
+    const [inputVal, setInputVal] = useState<string>("");
+    const [todoList, setTodoList] = useState<Todo[]>(sampleList);
+
+    // event
+    const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setInputVal(e.target.value);
+    }
+    const addList = () => {
+
+        if (inputVal===""){
+            return
+        }
+
+        setTodoList((prevState) =>
+            {
+                const addRow = {completed:false, task: inputVal}
+                return prevState.concat(addRow) // 불변성을 유지하기 위해 concat을 사용함 또는 [...prevState, inputVal]
+
+            }
+        )
+        setInputVal("");
+    }
+
+    const onSubmit = (e:FormEvent)=>{
+        e.preventDefault();
+    }
+
+    const onDelete = (index: number) => {
+        console.log(index);
+        setTodoList((prevState) => {
+            return prevState.filter((item, idx) => idx !== index);
+        });
+    }
+
+    const onEdit = (index: number) => {
+        const updateValue = prompt();
+
+        if (!updateValue) {
+            return;
+        }
+
+        setTodoList((prevList) => {
+           const updateList = prevList.map((item, idx)=>{
+               if (idx === index){
+                   const updateRow = {...item, task :updateValue};
+                   return updateRow;
+               } else {
+                   return item;
+               }
+           }) ;
+
+           return updateList;
+        });
+    }
+
+    const onCheck = (index: number) => {
+        setTodoList((prevList) => {
+            const updateList = prevList.map((item, idx) => {
+                if (idx === index) {
+                    const updateRow = {...item, completed: !item.completed}
+                    return updateRow;
+                } else {
+                    return item;
+                }
+            });
+            return updateList;
+        });
+    }
+
     // view
     return (
         <Wrapper>
             <Title>Todo List</Title>
-            <form>
+            <form onSubmit={onSubmit}>
                 <InputArea>
-                    <Input type="text" placeholder="할 일을 입력해주세요." />
-                    <AddButton> Add</AddButton>
+                    <Input type="text" placeholder="할 일을 입력해주세요." value={inputVal} onChange={handleOnChange}/>
+                    <AddButton onClick={addList}>Add</AddButton>
                 </InputArea>
             </form>
             <TodoItems>
-                <TodoItem>
-                    <Flex>
-                        <Checkbox />
-                        <Task completed={false}></Task>
-                    </Flex>
-                    <div>
-                        <EditButton>Edit</EditButton>
-                        <DeleteButton>Delete</DeleteButton>
-                    </div>
-                </TodoItem>
+                {todoList.map((item, index)=>(
+                    <TodoItem  key={index}>
+                        <Flex>
+                            <Checkbox onClick={()=>onCheck(index)} />
+                            <Task completed={item.completed}>{item.task}</Task>
+                        </Flex>
+                        <div>
+                            <EditButton onClick={() => onEdit(index)}>Edit</EditButton>
+                            <DeleteButton onClick={() => onDelete(index)}>Delete</DeleteButton>
+                        </div>
+                    </TodoItem>
+                ))}
             </TodoItems>
         </Wrapper>
     );
