@@ -10,6 +10,7 @@ import Calculator from "@/components/Calculator";
 import Popup from "@/components/Popup";
 import LiveClock from "@/components/LiveClock";
 import ToDoList from "@/components/ToDoList";
+import ToDoList_2 from "@/components/ToDoList_2";
 
 const AppContainer = styled.div`
     display: flex;
@@ -23,7 +24,10 @@ function App() {
     // view
     return (
         <>
-            <ToDoList />
+            <br />
+            <ToDoList_2></ToDoList_2>
+            <br />
+            {/*<ToDoList />*/}
             <br />
             <LiveClock />
             <br />
